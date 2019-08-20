@@ -6,4 +6,8 @@ docking stations| release
                 | is
                 |
 
-            
+Objects         |   Messages
+----------------|-----------------
+person          |   use a good bike
+bike            |   working or not
+docking station |   release bike
