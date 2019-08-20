@@ -1,13 +1,13 @@
-Nouns           Verbals
-----------------|--------------
-person          | use
-bikes           | see
-docking stations| release
-                | is
-                |
+#Nouns           Verbals
+#----------------|--------------
+#person          | use
+#bikes           | see
+#docking stations| release
+  #              | is
+  #              |
 
-Objects         |   Messages
-----------------|-----------------
-person          |   use a good bike
-bike            |   working or not
-docking station |   release bike
+#Objects         |   Messages
+#person          |   use a good bike
+#docking station |   release bike
+
+docking_station = DockingStation.new 
