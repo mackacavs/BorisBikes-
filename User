@@ -10,9 +10,14 @@
 #person          |   use a good bike
 #docking station |   release bike
 
+<<<<<<< HEAD
 docking_station = DockingStation.new
 
 class DockingStation
   def release_bike
   end
 end
+=======
+docking_station = DockingStation.new 
+aaa
+>>>>>>> b7d30582637e7e4b0d574171b4e33ae5e0b03835
