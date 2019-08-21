@@ -10,4 +10,9 @@
 #person          |   use a good bike
 #docking station |   release bike
 
-docking_station = DockingStation.new 
+docking_station = DockingStation.new
+
+class DockingStation
+  def release_bike
+  end
+end
