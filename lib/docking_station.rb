@@ -27,6 +27,10 @@ class DockingStation
       
   end
   
+  def get_broken_bikes
+    bike_array.select { |bike| bike.working? == false }
+  end
+
   private
 
   attr_reader :bike_array

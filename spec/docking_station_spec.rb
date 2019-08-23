@@ -70,4 +70,20 @@ describe DockingStation do
     end
   end
 
+  describe '#get_broken_bikes' do
+    let(:working_bike) { double :bike}
+    let(:not_working_bike) { double :bike}
+    it 'returns the broken bikes' do
+      allow(working_bike).to receive(:report)
+      allow(working_bike).to receive(:working?).and_return(true)
+      allow(not_working_bike).to receive(:report)
+      allow(not_working_bike).to receive(:working?).and_return(false)
+
+      10.times { subject.dock working_bike }
+      10.times { subject.dock(not_working_bike) }
+      broken_array = subject.get_broken_bikes
+      expect(broken_array[0].working?).to eq false
+    end
+  end
+
 end
