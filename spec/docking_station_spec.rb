@@ -4,7 +4,7 @@ describe DockingStation do
 
   it { is_expected.to respond_to :release_bike }
 
-  it { is_expected.to respond_to(:dock).with(1).argument }
+  it { is_expected.to respond_to(:dock).with(2).arguments }
 
   it "Default capacty is set to the argument that the user enters" do
     expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
@@ -33,6 +33,12 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error 'No bikes available'
     end
 
+    it 'raises an error if the bike is not working' do
+      bike = Bike.new
+      subject.dock(bike, false)
+      expect { subject.release_bike }.to raise_error 'The bike is broken'
+    end
+
   end
   
   describe '#dock' do
@@ -47,6 +53,18 @@ describe DockingStation do
       subject.capacity.times { docking_station.dock Bike.new }
       bike = Bike.new
       expect { docking_station.dock(bike) }.to raise_error 'Docking Station Full!'
+    end
+
+    it 'if reported sets bike to not working' do
+      bike = Bike.new
+      subject.dock(bike, false)
+      expect(bike.working?).to eq false
+    end
+
+    it 'if not reported sets bike to working' do
+      bike = Bike.new
+      subject.dock(bike)
+      expect(bike.working?).to eq true
     end
 
   end
