@@ -4,12 +4,24 @@ describe DockingStation do
 
   it { is_expected.to respond_to :release_bike }
 
-  it "Default capacty is set to the argument that the user enters" do
+  it { is_expected.to respond_to(:dock).with(1).argument }
 
+  it "Default capacty is set to the argument that the user enters" do
     expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
-# When the docking station instance is created you need 1 argument that takes a number
+
+  describe 'initialization' do
+
+      it 'has a variable capacity' do
+        docking_station = DockingStation.new(50)
+        50.times { docking_station.dock Bike.new }
+        expect{ docking_station.dock Bike.new }.to raise_error 'Docking Station Full!'
+      end
+      
+  end
+
   describe '#release_bike' do
+
     it 'releases a bike' do
       bike = Bike.new
       subject.dock(bike)
@@ -22,11 +34,7 @@ describe DockingStation do
     end
 
   end
-
-  it { is_expected.to respond_to(:dock).with(1).argument }
   
-  it { is_expected.to respond_to(:bike_array) }
-
   describe '#dock' do
 
     it 'docks something' do
@@ -38,7 +46,7 @@ describe DockingStation do
       docking_station = DockingStation.new
       subject.capacity.times { docking_station.dock Bike.new }
       bike = Bike.new
-      expect { docking_station.dock(bike) }.to raise_error 'Station Full!'
+      expect { docking_station.dock(bike) }.to raise_error 'Docking Station Full!'
     end
 
   end
